@@ -20,7 +20,8 @@ echo Network Throttling Index increased.
 echo.
 
 :: Optimize TCP/IP Settings
-netsh int tcp set global autotuninglevel=normal congestionprovider=ctcp ecncapability=disabled timestamps=disabled
+netsh int tcp set global autotuninglevel=normal ecncapability=disabled timestamps=disabled
+netsh int tcp set supplemental internet congestionprovider=ctcp
 echo TCP/IP Settings optimized.
 echo.
 
