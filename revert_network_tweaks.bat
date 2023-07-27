@@ -20,7 +20,8 @@ echo Network Throttling Index reset to default.
 echo.
 
 :: Reset TCP/IP Settings to default
-netsh int tcp set global autotuninglevel=normal congestionprovider=default ecncapability=default timestamps=default
+netsh int tcp set global autotuninglevel=normal ecncapability=default timestamps=default
+netsh int tcp set supplemental internet congestionprovider=default
 echo TCP/IP Settings reset to default.
 echo.
 
