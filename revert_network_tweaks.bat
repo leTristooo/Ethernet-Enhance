@@ -5,8 +5,12 @@ echo Reverting Network and Ethernet Settings...
 echo.
 
 :: Re-enable Nagle's Algorithm
-reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces" /v TcpAckFrequency /f
-reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces" /v TCPNoDelay /f
+for /f "tokens=1-3 delims= " %%a in ('netsh interface ipv4 show interfaces') do (
+    if not "%%c"=="" (
+        reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%c" /v TcpAckFrequency /f
+        reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%c" /v TCPNoDelay /f
+    )
+)
 echo Nagle's Algorithm re-enabled.
 echo.
 
@@ -16,12 +20,15 @@ echo Network Throttling Index reset to default.
 echo.
 
 :: Reset TCP/IP Settings to default
-netsh int tcp set global autotuninglevel=normal
-netsh int tcp set global congestionprovider=default
-netsh int tcp set global ecncapability=default
-netsh int tcp set global timestamps=default
+netsh int tcp set global autotuninglevel=normal congestionprovider=default ecncapability=default timestamps=default
 echo TCP/IP Settings reset to default.
+echo.
+
+:: Flush DNS Cache
+ipconfig /flushdns
+echo DNS Cache flushed.
 echo.
 
 echo Network and Ethernet tweaks reverted.
 pause
+
