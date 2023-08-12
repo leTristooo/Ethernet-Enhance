@@ -15,7 +15,7 @@ echo Nagle's Algorithm disabled.
 echo.
 
 :: Increase Network Throttling Index
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 0xFFFFFFFF /f
 echo Network Throttling Index increased.
 echo.
 
