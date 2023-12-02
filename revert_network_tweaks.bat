@@ -20,6 +20,7 @@ netsh int tcp set global autotuninglevel=normal
 netsh int tcp set global congestionprovider=default
 netsh int tcp set global ecncapability=default
 netsh int tcp set global timestamps=default
+netsh int tcp set global chimney=disabled
 echo TCP/IP Settings reset to default.
 echo.
 
